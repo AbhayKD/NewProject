@@ -3,7 +3,7 @@ public class check{
 	public static void main(String[] args){
 
 	check obj = new check();
-	check.obj;
+	check.obj();
 	}
 }
 
