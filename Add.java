@@ -2,9 +2,11 @@ public class check{
 
 	public static void main(String[] args){
 
-		byte b = 8;
-
-		b *= 2.5;
-		System.out.println(b);
+	check obj = new check();
+	check.obj;
 	}
+}
+
+class check{
+	System.out.println("This is a chekc file");
 }
