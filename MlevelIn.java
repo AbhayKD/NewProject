@@ -1,6 +1,6 @@
 
 
-public class Test {
+public class MlevelIn{
 	public static void main(String[] args){
 		A obj = new B(5);
 	
