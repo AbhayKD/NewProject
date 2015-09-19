@@ -1,0 +1,1006 @@
+2015-08-19T22:51:26.472+0530 I CONTROL  Hotfix KB2731284 or later update is not
+installed, will zero-out data files
+MongoDB shell version: 3.0.4
+connecting to: test
+> use college
+switched to db college
+> show dbs
+gauri  0.078GB
+local  0.078GB
+mydb   0.078GB
+stud   0.078GB
+test   0.078GB
+> use mydb
+switched to db mydb
+> use college
+switched to db college
+> db.createCollection("Roll_No",(capped:true,size:1000,max:200))
+2015-08-19T22:55:58.943+0530 E QUERY    SyntaxError: Unexpected token :
+> db.createCollection("Roll_No",(capped:true,size:1000,max:200))
+2015-08-19T22:56:26.237+0530 E QUERY    SyntaxError: Unexpected token :
+> db.createCollection("Roll_No",{capped:true,size:1000,max:200})
+{ "ok" : 1 }
+> db.createCollection("Sname\",{capped:true,size:1000,max:200})
+2015-08-19T22:57:48.620+0530 E QUERY    SyntaxError: Unexpected token ILLEGAL
+> db.createCollection("Sname",{capped:true,size:1000,max:200})
+{ "ok" : 1 }
+> db.createCollection("Branch",{capped:true,size:1000,max:200})
+{ "ok" : 1 }
+> db.createCollection("Year",{capped:true,size:1000,max:200})
+{ "ok" : 1 }
+> db.createCollection("Status",{capped:true,size:1000,max:200})
+{ "ok" : 1 }
+> show collections
+Branch
+Roll_No
+Sname
+Status
+Year
+system.indexes
+> show collections
+Branch
+Roll_No
+Sname
+Status
+Year
+system.indexes
+> db.Branch.drop()
+true
+> db.Roll_No.drop()
+true
+> db.Sname.drop()
+true
+> db.Status.drop()
+true
+> db.year.drop()
+false
+> db.Year.drop()
+true
+> db.createCollection("COllege_info",{capped:true,size:1000,max:200})
+{ "ok" : 1 }
+> db.COllege_info.insert({S_ID:1301,Sname:"Abhay",Branch:"Comp",Year:3,Status:"P
+"})
+WriteResult({ "nInserted" : 1 })
+> db.COllege_info.insert({S_ID:1302,Sname:"Akshay",Branch:"ENTC",Year:4,Status:"
+P"})
+WriteResult({ "nInserted" : 1 })
+> db.COllege_info.insert({S_ID:1302,Sname:"Priyanka",Branch:"Mech",Year:2,Status
+:"F"})
+WriteResult({ "nInserted" : 1 })
+> db.COllege_info.insert({S_ID:1303,Sname:"Priyanka",Branch:"Mech",Year:2,Status
+:"P"})
+WriteResult({ "nInserted" : 1 })
+> db.COllege_info.insert({S_ID:1302,Sname:"Akshay",Branch:"ENTC",Year:4,Status:"
+P"})
+WriteResult({ "nInserted" : 1 })
+> db.COllege_info.insert({S_ID:1304,Sname:"Madhukar",Branch:"Civil",Year:2,Statu
+s:"F"})
+WriteResult({ "nInserted" : 1 })
+> db.COllege_info.insert({S_ID:1305,Sname:"Kapish",Branch:"Elec",Year:4,Status:"
+F"})
+WriteResult({ "nInserted" : 1 })
+> db.COllege_info.insert({S_ID:1307,Sname:"Sonali",Branch:"Chem",Year:3,Status:"
+P"})
+WriteResult({ "nInserted" : 1 })
+> db.COllege_info.insert({S_ID:1306,Sname:"Rohan",Branch:"Comp",Year:3,Status:"F
+"})
+WriteResult({ "nInserted" : 1 })
+> db.COllege_info.find().pretty()
+{
+        "_id" : ObjectId("55d4bec2dd4a8d7ad64fb806"),
+        "S_ID" : 1301,
+        "Sname" : "Abhay",
+        "Branch" : "Comp",
+        "Year" : 3,
+        "Status" : "P"
+}
+{
+        "_id" : ObjectId("55d4bedcdd4a8d7ad64fb807"),
+        "S_ID" : 1302,
+        "Sname" : "Akshay",
+        "Branch" : "ENTC",
+        "Year" : 4,
+        "Status" : "P"
+}
+{
+        "_id" : ObjectId("55d4bef1dd4a8d7ad64fb808"),
+        "S_ID" : 1302,
+        "Sname" : "Priyanka",
+        "Branch" : "Mech",
+        "Year" : 2,
+        "Status" : "F"
+}
+{
+        "_id" : ObjectId("55d4bf00dd4a8d7ad64fb809"),
+        "S_ID" : 1303,
+        "Sname" : "Priyanka",
+        "Branch" : "Mech",
+        "Year" : 2,
+        "Status" : "P"
+}
+{
+        "_id" : ObjectId("55d4bf19dd4a8d7ad64fb80a"),
+        "S_ID" : 1302,
+        "Sname" : "Akshay",
+        "Branch" : "ENTC",
+        "Year" : 4,
+        "Status" : "P"
+}
+{
+        "_id" : ObjectId("55d4bf3edd4a8d7ad64fb80b"),
+        "S_ID" : 1304,
+        "Sname" : "Madhukar",
+        "Branch" : "Civil",
+        "Year" : 2,
+        "Status" : "F"
+}
+{
+        "_id" : ObjectId("55d4bf53dd4a8d7ad64fb80c"),
+        "S_ID" : 1305,
+        "Sname" : "Kapish",
+        "Branch" : "Elec",
+        "Year" : 4,
+        "Status" : "F"
+}
+{
+        "_id" : ObjectId("55d4bf69dd4a8d7ad64fb80d"),
+        "S_ID" : 1307,
+        "Sname" : "Sonali",
+        "Branch" : "Chem",
+        "Year" : 3,
+        "Status" : "P"
+}
+{
+        "_id" : ObjectId("55d4bf83dd4a8d7ad64fb80e"),
+        "S_ID" : 1306,
+        "Sname" : "Rohan",
+        "Branch" : "Comp",
+        "Year" : 3,
+        "Status" : "F"
+}
+> db.COllege_info.find({S_ID:1304}).pretty()
+{
+        "_id" : ObjectId("55d4bf3edd4a8d7ad64fb80b"),
+        "S_ID" : 1304,
+        "Sname" : "Madhukar",
+        "Branch" : "Civil",
+        "Year" : 2,
+        "Status" : "F"
+}
+> db.COllege_info.insert({S_ID:1308,Sname:"Akash",Branch:"Poly",Year:1,Status:"P
+"})
+WriteResult({ "nInserted" : 1 })
+> db.COllege_info.insert({S_ID:1310,Sname:"Shambhu",Branch:"Civil",Year:4,Status
+:"F"})
+WriteResult({ "nInserted" : 1 })
+> db.COllege_info.update({S_ID:1303},{$set{'Status':"F"}})
+2015-08-19T23:18:43.987+0530 E QUERY    SyntaxError: Unexpected token {
+> db.COllege_info.update({S_ID:1303},{$set:{'Status':"F"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.COllege_info.find().pretty()
+{
+        "_id" : ObjectId("55d4bec2dd4a8d7ad64fb806"),
+        "S_ID" : 1301,
+        "Sname" : "Abhay",
+        "Branch" : "Comp",
+        "Year" : 3,
+        "Status" : "P"
+}
+{
+        "_id" : ObjectId("55d4bedcdd4a8d7ad64fb807"),
+        "S_ID" : 1302,
+        "Sname" : "Akshay",
+        "Branch" : "ENTC",
+        "Year" : 4,
+        "Status" : "P"
+}
+{
+        "_id" : ObjectId("55d4bef1dd4a8d7ad64fb808"),
+        "S_ID" : 1302,
+        "Sname" : "Priyanka",
+        "Branch" : "Mech",
+        "Year" : 2,
+        "Status" : "F"
+}
+{
+        "_id" : ObjectId("55d4bf00dd4a8d7ad64fb809"),
+        "S_ID" : 1303,
+        "Sname" : "Priyanka",
+        "Branch" : "Mech",
+        "Year" : 2,
+        "Status" : "F"
+}
+{
+        "_id" : ObjectId("55d4bf19dd4a8d7ad64fb80a"),
+        "S_ID" : 1302,
+        "Sname" : "Akshay",
+        "Branch" : "ENTC",
+        "Year" : 4,
+        "Status" : "P"
+}
+{
+        "_id" : ObjectId("55d4bf3edd4a8d7ad64fb80b"),
+        "S_ID" : 1304,
+        "Sname" : "Madhukar",
+        "Branch" : "Civil",
+        "Year" : 2,
+        "Status" : "F"
+}
+{
+        "_id" : ObjectId("55d4bf53dd4a8d7ad64fb80c"),
+        "S_ID" : 1305,
+        "Sname" : "Kapish",
+        "Branch" : "Elec",
+        "Year" : 4,
+        "Status" : "F"
+}
+{
+        "_id" : ObjectId("55d4bf69dd4a8d7ad64fb80d"),
+        "S_ID" : 1307,
+        "Sname" : "Sonali",
+        "Branch" : "Chem",
+        "Year" : 3,
+        "Status" : "P"
+}
+{
+        "_id" : ObjectId("55d4bf83dd4a8d7ad64fb80e"),
+        "S_ID" : 1306,
+        "Sname" : "Rohan",
+        "Branch" : "Comp",
+        "Year" : 3,
+        "Status" : "F"
+}
+{
+        "_id" : ObjectId("55d4c0ccdd4a8d7ad64fb80f"),
+        "S_ID" : 1308,
+        "Sname" : "Akash",
+        "Branch" : "Poly",
+        "Year" : 1,
+        "Status" : "P"
+}
+{
+        "_id" : ObjectId("55d4c0fadd4a8d7ad64fb810"),
+        "S_ID" : 1310,
+        "Sname" : "Shambhu",
+        "Branch" : "Civil",
+        "Year" : 4,
+        "Status" : "F"
+}
+> db.COllege_info.update({S_ID:1310},{$set:{'Branch':"Elec"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.COllege_info.update({Sname:"Rohan"},{$set:{'Branch':"Chem"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.COllege_info.update({Branch:"Comp"},{$set:{'Status':"P"}},{multi:true})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 0 })
+> db.COllege_info.find().pretty()
+{
+        "_id" : ObjectId("55d4bec2dd4a8d7ad64fb806"),
+        "S_ID" : 1301,
+        "Sname" : "Abhay",
+        "Branch" : "Comp",
+        "Year" : 3,
+        "Status" : "P"
+}
+{
+        "_id" : ObjectId("55d4bedcdd4a8d7ad64fb807"),
+        "S_ID" : 1302,
+        "Sname" : "Akshay",
+        "Branch" : "ENTC",
+        "Year" : 4,
+        "Status" : "P"
+}
+{
+        "_id" : ObjectId("55d4bef1dd4a8d7ad64fb808"),
+        "S_ID" : 1302,
+        "Sname" : "Priyanka",
+        "Branch" : "Mech",
+        "Year" : 2,
+        "Status" : "F"
+}
+{
+        "_id" : ObjectId("55d4bf00dd4a8d7ad64fb809"),
+        "S_ID" : 1303,
+        "Sname" : "Priyanka",
+        "Branch" : "Mech",
+        "Year" : 2,
+        "Status" : "F"
+}
+{
+        "_id" : ObjectId("55d4bf19dd4a8d7ad64fb80a"),
+        "S_ID" : 1302,
+        "Sname" : "Akshay",
+        "Branch" : "ENTC",
+        "Year" : 4,
+        "Status" : "P"
+}
+{
+        "_id" : ObjectId("55d4bf3edd4a8d7ad64fb80b"),
+        "S_ID" : 1304,
+        "Sname" : "Madhukar",
+        "Branch" : "Civil",
+        "Year" : 2,
+        "Status" : "F"
+}
+{
+        "_id" : ObjectId("55d4bf53dd4a8d7ad64fb80c"),
+        "S_ID" : 1305,
+        "Sname" : "Kapish",
+        "Branch" : "Elec",
+        "Year" : 4,
+        "Status" : "F"
+}
+{
+        "_id" : ObjectId("55d4bf69dd4a8d7ad64fb80d"),
+        "S_ID" : 1307,
+        "Sname" : "Sonali",
+        "Branch" : "Chem",
+        "Year" : 3,
+        "Status" : "P"
+}
+{
+        "_id" : ObjectId("55d4bf83dd4a8d7ad64fb80e"),
+        "S_ID" : 1306,
+        "Sname" : "Rohan",
+        "Branch" : "Chem",
+        "Year" : 3,
+        "Status" : "F"
+}
+{
+        "_id" : ObjectId("55d4c0ccdd4a8d7ad64fb80f"),
+        "S_ID" : 1308,
+        "Sname" : "Akash",
+        "Branch" : "Poly",
+        "Year" : 1,
+        "Status" : "P"
+}
+{
+        "_id" : ObjectId("55d4c0fadd4a8d7ad64fb810"),
+        "S_ID" : 1310,
+        "Sname" : "Shambhu",
+        "Branch" : "Elec",
+        "Year" : 4,
+        "Status" : "F"
+}
+> db.COllege_info.remove({S_ID:1306})
+WriteResult({
+        "nRemoved" : 0,
+        "writeError" : {
+                "code" : 20,
+                "errmsg" : "cannot remove from a capped collection: college.COll
+ege_info"
+        }
+})
+> db.COllege_info.update({Branch:"Sci"},{$set:{'Status':"P"}},{upsert:true})
+WriteResult({
+        "nMatched" : 0,
+        "nUpserted" : 1,
+        "nModified" : 0,
+        "_id" : ObjectId("55d4c5f22a5a420011994414")
+})
+> db.COllege_info.find().pretty()
+{
+        "_id" : ObjectId("55d4bec2dd4a8d7ad64fb806"),
+        "S_ID" : 1301,
+        "Sname" : "Abhay",
+        "Branch" : "Comp",
+        "Year" : 3,
+        "Status" : "P"
+}
+{
+        "_id" : ObjectId("55d4bedcdd4a8d7ad64fb807"),
+        "S_ID" : 1302,
+        "Sname" : "Akshay",
+        "Branch" : "ENTC",
+        "Year" : 4,
+        "Status" : "P"
+}
+{
+        "_id" : ObjectId("55d4bef1dd4a8d7ad64fb808"),
+        "S_ID" : 1302,
+        "Sname" : "Priyanka",
+        "Branch" : "Mech",
+        "Year" : 2,
+        "Status" : "F"
+}
+{
+        "_id" : ObjectId("55d4bf00dd4a8d7ad64fb809"),
+        "S_ID" : 1303,
+        "Sname" : "Priyanka",
+        "Branch" : "Mech",
+        "Year" : 2,
+        "Status" : "F"
+}
+{
+        "_id" : ObjectId("55d4bf19dd4a8d7ad64fb80a"),
+        "S_ID" : 1302,
+        "Sname" : "Akshay",
+        "Branch" : "ENTC",
+        "Year" : 4,
+        "Status" : "P"
+}
+{
+        "_id" : ObjectId("55d4bf3edd4a8d7ad64fb80b"),
+        "S_ID" : 1304,
+        "Sname" : "Madhukar",
+        "Branch" : "Civil",
+        "Year" : 2,
+        "Status" : "F"
+}
+{
+        "_id" : ObjectId("55d4bf53dd4a8d7ad64fb80c"),
+        "S_ID" : 1305,
+        "Sname" : "Kapish",
+        "Branch" : "Elec",
+        "Year" : 4,
+        "Status" : "F"
+}
+{
+        "_id" : ObjectId("55d4bf69dd4a8d7ad64fb80d"),
+        "S_ID" : 1307,
+        "Sname" : "Sonali",
+        "Branch" : "Chem",
+        "Year" : 3,
+        "Status" : "P"
+}
+{
+        "_id" : ObjectId("55d4bf83dd4a8d7ad64fb80e"),
+        "S_ID" : 1306,
+        "Sname" : "Rohan",
+        "Branch" : "Chem",
+        "Year" : 3,
+        "Status" : "F"
+}
+{
+        "_id" : ObjectId("55d4c0ccdd4a8d7ad64fb80f"),
+        "S_ID" : 1308,
+        "Sname" : "Akash",
+        "Branch" : "Poly",
+        "Year" : 1,
+        "Status" : "P"
+}
+{
+        "_id" : ObjectId("55d4c0fadd4a8d7ad64fb810"),
+        "S_ID" : 1310,
+        "Sname" : "Shambhu",
+        "Branch" : "Elec",
+        "Year" : 4,
+        "Status" : "F"
+}
+{
+        "_id" : ObjectId("55d4c5f22a5a420011994414"),
+        "Branch" : "Sci",
+        "Status" : "P"
+}
+> db.COllege_info.update({Branch:"Sci"},{$set:{Sname:"Swapnil",S_ID:1313,Year:4}
+})
+WriteResult({
+        "nMatched" : 0,
+        "nUpserted" : 0,
+        "nModified" : 0,
+        "writeError" : {
+                "code" : 10003,
+                "errmsg" : "failing update: objects in a capped ns cannot grow"
+        }
+})
+> db.COllege_info.update({Branch:"Sci"},{$set:{'Sname':"Swapnil",'S_ID':1313,'Ye
+ar':4}})
+WriteResult({
+        "nMatched" : 0,
+        "nUpserted" : 0,
+        "nModified" : 0,
+        "writeError" : {
+                "code" : 10003,
+                "errmsg" : "failing update: objects in a capped ns cannot grow"
+        }
+})
+> db.Student_info.insert({Rn:1301,Sname:"Abhay",Dept:"Comp",Yr:3,Status:"P"},{Rn
+:1301,Sname:"Rohan",Dept:"Mech",Yr:3,Status:"P"},{Rn:1305,Sname:"Priyanka",Dept:
+"Chem",Yr:1,Status:"F"},{Rn:1304,Sname:"Saket",Dept:"Civil",Yr:4,Status:"F"})
+WriteResult({ "nInserted" : 1 })
+> db.Student_info.find().pretty()
+{
+        "_id" : ObjectId("55d4c719dd4a8d7ad64fb811"),
+        "Rn" : 1301,
+        "Sname" : "Abhay",
+        "Dept" : "Comp",
+        "Yr" : 3,
+        "Status" : "P"
+}
+> db.Student_info.insert({Rn:1305,Sname:"Rohan",Dept:"Mech",Yr:3,Status:"P"})
+WriteResult({ "nInserted" : 1 })
+> db.Student_info.insert({Rn:1303,Sname:"Saket",Dept:"Civil",Yr:4,Status:"F"})
+WriteResult({ "nInserted" : 1 })
+> db.Student_info.insert({Rn:1306,Sname:"Priyanka",Dept:"Chem",Yr:1,Status:"F"})
+
+WriteResult({ "nInserted" : 1 })
+> db.Student_info.insert({Rn:1302,Sname:"Dhanno",Dept:"Elec",Yr:4,Status:"P"})
+WriteResult({ "nInserted" : 1 })
+> db.Student_info.insert({Rn:1307,Sname:"Akshay",Dept:"ENTC",Yr:2,Status:"P"})
+WriteResult({ "nInserted" : 1 })
+> db.Student_info.insert({Rn:1310,Sname:"Vipin",Dept:"Mechs",Yr:3,Status:"P"})
+WriteResult({ "nInserted" : 1 })
+> db.Student_info.insert({Rn:1309,Sname:"Swapnil",Dept:"Comp",Yr:4,Status:"F"})
+WriteResult({ "nInserted" : 1 })
+> db.Student_info.insert({Rn:1313,Sname:"Akash",Dept:"poly",Yr:1,Status:"P"})
+WriteResult({ "nInserted" : 1 })
+> db.Student_info.find().pretty()
+{
+        "_id" : ObjectId("55d4c719dd4a8d7ad64fb811"),
+        "Rn" : 1301,
+        "Sname" : "Abhay",
+        "Dept" : "Comp",
+        "Yr" : 3,
+        "Status" : "P"
+}
+{
+        "_id" : ObjectId("55d4c74fdd4a8d7ad64fb812"),
+        "Rn" : 1305,
+        "Sname" : "Rohan",
+        "Dept" : "Mech",
+        "Yr" : 3,
+        "Status" : "P"
+}
+{
+        "_id" : ObjectId("55d4c762dd4a8d7ad64fb813"),
+        "Rn" : 1303,
+        "Sname" : "Saket",
+        "Dept" : "Civil",
+        "Yr" : 4,
+        "Status" : "F"
+}
+{
+        "_id" : ObjectId("55d4c776dd4a8d7ad64fb814"),
+        "Rn" : 1306,
+        "Sname" : "Priyanka",
+        "Dept" : "Chem",
+        "Yr" : 1,
+        "Status" : "F"
+}
+{
+        "_id" : ObjectId("55d4c78edd4a8d7ad64fb815"),
+        "Rn" : 1302,
+        "Sname" : "Dhanno",
+        "Dept" : "Elec",
+        "Yr" : 4,
+        "Status" : "P"
+}
+{
+        "_id" : ObjectId("55d4c7a6dd4a8d7ad64fb816"),
+        "Rn" : 1307,
+        "Sname" : "Akshay",
+        "Dept" : "ENTC",
+        "Yr" : 2,
+        "Status" : "P"
+}
+{
+        "_id" : ObjectId("55d4c7c9dd4a8d7ad64fb817"),
+        "Rn" : 1310,
+        "Sname" : "Vipin",
+        "Dept" : "Mechs",
+        "Yr" : 3,
+        "Status" : "P"
+}
+{
+        "_id" : ObjectId("55d4c7dcdd4a8d7ad64fb818"),
+        "Rn" : 1309,
+        "Sname" : "Swapnil",
+        "Dept" : "Comp",
+        "Yr" : 4,
+        "Status" : "F"
+}
+{
+        "_id" : ObjectId("55d4c7f6dd4a8d7ad64fb819"),
+        "Rn" : 1313,
+        "Sname" : "Akash",
+        "Dept" : "poly",
+        "Yr" : 1,
+        "Status" : "P"
+}
+> db.Student_info.update({Rn:1310},{$set:{'Status':"F"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.Student_info.update({Sname:"Akash"},{$set:{'Year':2}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.Student_info.update({Rn:1302},{$set:{'Sname':"Priya"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.Student_info.find().pretty()
+{
+        "_id" : ObjectId("55d4c719dd4a8d7ad64fb811"),
+        "Rn" : 1301,
+        "Sname" : "Abhay",
+        "Dept" : "Comp",
+        "Yr" : 3,
+        "Status" : "P"
+}
+{
+        "_id" : ObjectId("55d4c74fdd4a8d7ad64fb812"),
+        "Rn" : 1305,
+        "Sname" : "Rohan",
+        "Dept" : "Mech",
+        "Yr" : 3,
+        "Status" : "P"
+}
+{
+        "_id" : ObjectId("55d4c762dd4a8d7ad64fb813"),
+        "Rn" : 1303,
+        "Sname" : "Saket",
+        "Dept" : "Civil",
+        "Yr" : 4,
+        "Status" : "F"
+}
+{
+        "_id" : ObjectId("55d4c776dd4a8d7ad64fb814"),
+        "Rn" : 1306,
+        "Sname" : "Priyanka",
+        "Dept" : "Chem",
+        "Yr" : 1,
+        "Status" : "F"
+}
+{
+        "_id" : ObjectId("55d4c78edd4a8d7ad64fb815"),
+        "Rn" : 1302,
+        "Sname" : "Priya",
+        "Dept" : "Elec",
+        "Yr" : 4,
+        "Status" : "P"
+}
+{
+        "_id" : ObjectId("55d4c7a6dd4a8d7ad64fb816"),
+        "Rn" : 1307,
+        "Sname" : "Akshay",
+        "Dept" : "ENTC",
+        "Yr" : 2,
+        "Status" : "P"
+}
+{
+        "_id" : ObjectId("55d4c7c9dd4a8d7ad64fb817"),
+        "Rn" : 1310,
+        "Sname" : "Vipin",
+        "Dept" : "Mechs",
+        "Yr" : 3,
+        "Status" : "F"
+}
+{
+        "_id" : ObjectId("55d4c7dcdd4a8d7ad64fb818"),
+        "Rn" : 1309,
+        "Sname" : "Swapnil",
+        "Dept" : "Comp",
+        "Yr" : 4,
+        "Status" : "F"
+}
+{
+        "_id" : ObjectId("55d4c7f6dd4a8d7ad64fb819"),
+        "Rn" : 1313,
+        "Sname" : "Akash",
+        "Dept" : "poly",
+        "Yr" : 1,
+        "Status" : "P",
+        "Year" : 2
+}
+> db.Student_info.remove({Rn:1302})
+WriteResult({ "nRemoved" : 1 })
+> db.Student_info.find().pretty()
+{
+        "_id" : ObjectId("55d4c719dd4a8d7ad64fb811"),
+        "Rn" : 1301,
+        "Sname" : "Abhay",
+        "Dept" : "Comp",
+        "Yr" : 3,
+        "Status" : "P"
+}
+{
+        "_id" : ObjectId("55d4c74fdd4a8d7ad64fb812"),
+        "Rn" : 1305,
+        "Sname" : "Rohan",
+        "Dept" : "Mech",
+        "Yr" : 3,
+        "Status" : "P"
+}
+{
+        "_id" : ObjectId("55d4c762dd4a8d7ad64fb813"),
+        "Rn" : 1303,
+        "Sname" : "Saket",
+        "Dept" : "Civil",
+        "Yr" : 4,
+        "Status" : "F"
+}
+{
+        "_id" : ObjectId("55d4c776dd4a8d7ad64fb814"),
+        "Rn" : 1306,
+        "Sname" : "Priyanka",
+        "Dept" : "Chem",
+        "Yr" : 1,
+        "Status" : "F"
+}
+{
+        "_id" : ObjectId("55d4c7a6dd4a8d7ad64fb816"),
+        "Rn" : 1307,
+        "Sname" : "Akshay",
+        "Dept" : "ENTC",
+        "Yr" : 2,
+        "Status" : "P"
+}
+{
+        "_id" : ObjectId("55d4c7c9dd4a8d7ad64fb817"),
+        "Rn" : 1310,
+        "Sname" : "Vipin",
+        "Dept" : "Mechs",
+        "Yr" : 3,
+        "Status" : "F"
+}
+{
+        "_id" : ObjectId("55d4c7dcdd4a8d7ad64fb818"),
+        "Rn" : 1309,
+        "Sname" : "Swapnil",
+        "Dept" : "Comp",
+        "Yr" : 4,
+        "Status" : "F"
+}
+{
+        "_id" : ObjectId("55d4c7f6dd4a8d7ad64fb819"),
+        "Rn" : 1313,
+        "Sname" : "Akash",
+        "Dept" : "poly",
+        "Yr" : 1,
+        "Status" : "P",
+        "Year" : 2
+}
+> db.Student_info.find().sort(Rn:1)
+2015-08-19T23:54:35.748+0530 E QUERY    SyntaxError: Unexpected token :
+> db.Student_info.find().sort({Rn:1})
+{ "_id" : ObjectId("55d4c719dd4a8d7ad64fb811"), "Rn" : 1301, "Sname" : "Abhay",
+"Dept" : "Comp", "Yr" : 3, "Status" : "P" }
+{ "_id" : ObjectId("55d4c9acdd4a8d7ad64fb81a"), "Rn" : 1302, "Sname" : "Priya",
+"Dept" : "Elec", "Yr" : 1, "Status" : "P" }
+{ "_id" : ObjectId("55d4c762dd4a8d7ad64fb813"), "Rn" : 1303, "Sname" : "Saket",
+"Dept" : "Civil", "Yr" : 4, "Status" : "F" }
+{ "_id" : ObjectId("55d4c74fdd4a8d7ad64fb812"), "Rn" : 1305, "Sname" : "Rohan",
+"Dept" : "Mech", "Yr" : 3, "Status" : "P" }
+{ "_id" : ObjectId("55d4c776dd4a8d7ad64fb814"), "Rn" : 1306, "Sname" : "Priyanka
+", "Dept" : "Chem", "Yr" : 1, "Status" : "F" }
+{ "_id" : ObjectId("55d4c7a6dd4a8d7ad64fb816"), "Rn" : 1307, "Sname" : "Akshay",
+ "Dept" : "ENTC", "Yr" : 2, "Status" : "P" }
+{ "_id" : ObjectId("55d4c7dcdd4a8d7ad64fb818"), "Rn" : 1309, "Sname" : "Swapnil"
+, "Dept" : "Comp", "Yr" : 4, "Status" : "F" }
+{ "_id" : ObjectId("55d4c7c9dd4a8d7ad64fb817"), "Rn" : 1310, "Sname" : "Vipin",
+"Dept" : "Mechs", "Yr" : 3, "Status" : "F" }
+{ "_id" : ObjectId("55d4c7f6dd4a8d7ad64fb819"), "Rn" : 1313, "Sname" : "Akash",
+"Dept" : "poly", "Yr" : 1, "Status" : "P", "Year" : 2 }
+> db.Student_info.find().sort({Rn:-1})
+{ "_id" : ObjectId("55d4c7f6dd4a8d7ad64fb819"), "Rn" : 1313, "Sname" : "Akash",
+"Dept" : "poly", "Yr" : 1, "Status" : "P", "Year" : 2 }
+{ "_id" : ObjectId("55d4c7c9dd4a8d7ad64fb817"), "Rn" : 1310, "Sname" : "Vipin",
+"Dept" : "Mechs", "Yr" : 3, "Status" : "F" }
+{ "_id" : ObjectId("55d4c7dcdd4a8d7ad64fb818"), "Rn" : 1309, "Sname" : "Swapnil"
+, "Dept" : "Comp", "Yr" : 4, "Status" : "F" }
+{ "_id" : ObjectId("55d4c7a6dd4a8d7ad64fb816"), "Rn" : 1307, "Sname" : "Akshay",
+ "Dept" : "ENTC", "Yr" : 2, "Status" : "P" }
+{ "_id" : ObjectId("55d4c776dd4a8d7ad64fb814"), "Rn" : 1306, "Sname" : "Priyanka
+", "Dept" : "Chem", "Yr" : 1, "Status" : "F" }
+{ "_id" : ObjectId("55d4c74fdd4a8d7ad64fb812"), "Rn" : 1305, "Sname" : "Rohan",
+"Dept" : "Mech", "Yr" : 3, "Status" : "P" }
+{ "_id" : ObjectId("55d4c762dd4a8d7ad64fb813"), "Rn" : 1303, "Sname" : "Saket",
+"Dept" : "Civil", "Yr" : 4, "Status" : "F" }
+{ "_id" : ObjectId("55d4c9acdd4a8d7ad64fb81a"), "Rn" : 1302, "Sname" : "Priya",
+"Dept" : "Elec", "Yr" : 1, "Status" : "P" }
+{ "_id" : ObjectId("55d4c719dd4a8d7ad64fb811"), "Rn" : 1301, "Sname" : "Abhay",
+"Dept" : "Comp", "Yr" : 3, "Status" : "P" }
+> db.Student_info.find().limit(5)
+{ "_id" : ObjectId("55d4c719dd4a8d7ad64fb811"), "Rn" : 1301, "Sname" : "Abhay",
+"Dept" : "Comp", "Yr" : 3, "Status" : "P" }
+{ "_id" : ObjectId("55d4c74fdd4a8d7ad64fb812"), "Rn" : 1305, "Sname" : "Rohan",
+"Dept" : "Mech", "Yr" : 3, "Status" : "P" }
+{ "_id" : ObjectId("55d4c762dd4a8d7ad64fb813"), "Rn" : 1303, "Sname" : "Saket",
+"Dept" : "Civil", "Yr" : 4, "Status" : "F" }
+{ "_id" : ObjectId("55d4c776dd4a8d7ad64fb814"), "Rn" : 1306, "Sname" : "Priyanka
+", "Dept" : "Chem", "Yr" : 1, "Status" : "F" }
+{ "_id" : ObjectId("55d4c7a6dd4a8d7ad64fb816"), "Rn" : 1307, "Sname" : "Akshay",
+ "Dept" : "ENTC", "Yr" : 2, "Status" : "P" }
+> db.Student_info.find({Rn:1301},{Rn:1309})
+{ "_id" : ObjectId("55d4c719dd4a8d7ad64fb811"), "Rn" : 1301 }
+> db.Student_info.find({'Rn':1301},{'Rn':1309})
+{ "_id" : ObjectId("55d4c719dd4a8d7ad64fb811"), "Rn" : 1301 }
+> db.Student_info.find({'Rn':1301,'Rn':1309}).pretty()
+{
+        "_id" : ObjectId("55d4c7dcdd4a8d7ad64fb818"),
+        "Rn" : 1309,
+        "Sname" : "Swapnil",
+        "Dept" : "Comp",
+        "Yr" : 4,
+        "Status" : "F"
+}
+> db.Student_info.find({'Dept':"Comp",'Status':"P"}).pretty()
+{
+        "_id" : ObjectId("55d4c719dd4a8d7ad64fb811"),
+        "Rn" : 1301,
+        "Sname" : "Abhay",
+        "Dept" : "Comp",
+        "Yr" : 3,
+        "Status" : "P"
+}
+> db.Student_info.find($Or:[{'Dept':"Comp"},{'Status':"P"}]).pretty()
+2015-08-20T00:00:31.874+0530 E QUERY    SyntaxError: Unexpected token :
+> db.Student_info.find({$Or:[{'Dept':"Comp"},{'Status':"P"}]}).pretty()
+Error: error: {
+        "$err" : "Can't canonicalize query: BadValue unknown top level operator:
+ $Or",
+        "code" : 17287
+}
+> db.Student_info.find({$Or:[{'Yr':"3"},{'Status':"P"}]}).pretty()
+Error: error: {
+        "$err" : "Can't canonicalize query: BadValue unknown top level operator:
+ $Or",
+        "code" : 17287
+}
+> db.Student_info.find({$or:[{'Yr':"3"},{'Status':"P"}]}).pretty()
+{
+        "_id" : ObjectId("55d4c719dd4a8d7ad64fb811"),
+        "Rn" : 1301,
+        "Sname" : "Abhay",
+        "Dept" : "Comp",
+        "Yr" : 3,
+        "Status" : "P"
+}
+{
+        "_id" : ObjectId("55d4c74fdd4a8d7ad64fb812"),
+        "Rn" : 1305,
+        "Sname" : "Rohan",
+        "Dept" : "Mech",
+        "Yr" : 3,
+        "Status" : "P"
+}
+{
+        "_id" : ObjectId("55d4c7a6dd4a8d7ad64fb816"),
+        "Rn" : 1307,
+        "Sname" : "Akshay",
+        "Dept" : "ENTC",
+        "Yr" : 2,
+        "Status" : "P"
+}
+{
+        "_id" : ObjectId("55d4c7f6dd4a8d7ad64fb819"),
+        "Rn" : 1313,
+        "Sname" : "Akash",
+        "Dept" : "poly",
+        "Yr" : 1,
+        "Status" : "P",
+        "Year" : 2
+}
+{
+        "_id" : ObjectId("55d4c9acdd4a8d7ad64fb81a"),
+        "Rn" : 1302,
+        "Sname" : "Priya",
+        "Dept" : "Elec",
+        "Yr" : 1,
+        "Status" : "P"
+}
+> db.Student_info.find({},{'Sname:1','Yr':1})
+2015-08-20T00:04:15.423+0530 E QUERY    SyntaxError: Unexpected token ,
+> db.Student_info.find({},{"Sname":1',"Yr":1})
+2015-08-20T00:04:41.984+0530 E QUERY    SyntaxError: Unexpected token ILLEGAL
+> db.Student_info.find({},{Sname:1,Yr:1})
+{ "_id" : ObjectId("55d4c719dd4a8d7ad64fb811"), "Sname" : "Abhay", "Yr" : 3 }
+{ "_id" : ObjectId("55d4c74fdd4a8d7ad64fb812"), "Sname" : "Rohan", "Yr" : 3 }
+{ "_id" : ObjectId("55d4c762dd4a8d7ad64fb813"), "Sname" : "Saket", "Yr" : 4 }
+{ "_id" : ObjectId("55d4c776dd4a8d7ad64fb814"), "Sname" : "Priyanka", "Yr" : 1 }
+
+{ "_id" : ObjectId("55d4c7a6dd4a8d7ad64fb816"), "Sname" : "Akshay", "Yr" : 2 }
+{ "_id" : ObjectId("55d4c7c9dd4a8d7ad64fb817"), "Sname" : "Vipin", "Yr" : 3 }
+{ "_id" : ObjectId("55d4c7dcdd4a8d7ad64fb818"), "Sname" : "Swapnil", "Yr" : 4 }
+{ "_id" : ObjectId("55d4c7f6dd4a8d7ad64fb819"), "Sname" : "Akash", "Yr" : 1 }
+{ "_id" : ObjectId("55d4c9acdd4a8d7ad64fb81a"), "Sname" : "Priya", "Yr" : 1 }
+> db.Student_info.find({},{Sname:1,Yr:1}).sort(Rn:-1)
+2015-08-20T00:07:01.695+0530 E QUERY    SyntaxError: Unexpected token :
+> db.Student_info.find({},{Sname:1,Yr:1}).sort({Rn:-1})
+{ "_id" : ObjectId("55d4c7f6dd4a8d7ad64fb819"), "Sname" : "Akash", "Yr" : 1 }
+{ "_id" : ObjectId("55d4c7c9dd4a8d7ad64fb817"), "Sname" : "Vipin", "Yr" : 3 }
+{ "_id" : ObjectId("55d4c7dcdd4a8d7ad64fb818"), "Sname" : "Swapnil", "Yr" : 4 }
+{ "_id" : ObjectId("55d4c7a6dd4a8d7ad64fb816"), "Sname" : "Akshay", "Yr" : 2 }
+{ "_id" : ObjectId("55d4c776dd4a8d7ad64fb814"), "Sname" : "Priyanka", "Yr" : 1 }
+
+{ "_id" : ObjectId("55d4c74fdd4a8d7ad64fb812"), "Sname" : "Rohan", "Yr" : 3 }
+{ "_id" : ObjectId("55d4c762dd4a8d7ad64fb813"), "Sname" : "Saket", "Yr" : 4 }
+{ "_id" : ObjectId("55d4c9acdd4a8d7ad64fb81a"), "Sname" : "Priya", "Yr" : 1 }
+{ "_id" : ObjectId("55d4c719dd4a8d7ad64fb811"), "Sname" : "Abhay", "Yr" : 3 }
+> db.Student_info.find({},{Sname:1,Yr:1}).sort({Sname:-1})
+{ "_id" : ObjectId("55d4c7c9dd4a8d7ad64fb817"), "Sname" : "Vipin", "Yr" : 3 }
+{ "_id" : ObjectId("55d4c7dcdd4a8d7ad64fb818"), "Sname" : "Swapnil", "Yr" : 4 }
+{ "_id" : ObjectId("55d4c762dd4a8d7ad64fb813"), "Sname" : "Saket", "Yr" : 4 }
+{ "_id" : ObjectId("55d4c74fdd4a8d7ad64fb812"), "Sname" : "Rohan", "Yr" : 3 }
+{ "_id" : ObjectId("55d4c776dd4a8d7ad64fb814"), "Sname" : "Priyanka", "Yr" : 1 }
+
+{ "_id" : ObjectId("55d4c9acdd4a8d7ad64fb81a"), "Sname" : "Priya", "Yr" : 1 }
+{ "_id" : ObjectId("55d4c7a6dd4a8d7ad64fb816"), "Sname" : "Akshay", "Yr" : 2 }
+{ "_id" : ObjectId("55d4c7f6dd4a8d7ad64fb819"), "Sname" : "Akash", "Yr" : 1 }
+{ "_id" : ObjectId("55d4c719dd4a8d7ad64fb811"), "Sname" : "Abhay", "Yr" : 3 }
+> db.Student_info.aggregate([{$group:{_id:"$Sname", Total:{$sum:1}}}])
+{ "_id" : "Akash", "Total" : 1 }
+{ "_id" : "Vipin", "Total" : 1 }
+{ "_id" : "Priya", "Total" : 1 }
+{ "_id" : "Akshay", "Total" : 1 }
+{ "_id" : "Priyanka", "Total" : 1 }
+{ "_id" : "Saket", "Total" : 1 }
+{ "_id" : "Rohan", "Total" : 1 }
+{ "_id" : "Swapnil", "Total" : 1 }
+{ "_id" : "Abhay", "Total" : 1 }
+> db.Student_info.ensureIndex({"Rn":1})
+{
+        "createdCollectionAutomatically" : false,
+        "numIndexesBefore" : 1,
+        "numIndexesAfter" : 2,
+        "ok" : 1
+}
+> db.Student_info.find().pretty()
+{
+        "_id" : ObjectId("55d4c719dd4a8d7ad64fb811"),
+        "Rn" : 1301,
+        "Sname" : "Abhay",
+        "Dept" : "Comp",
+        "Yr" : 3,
+        "Status" : "P"
+}
+{
+        "_id" : ObjectId("55d4c74fdd4a8d7ad64fb812"),
+        "Rn" : 1305,
+        "Sname" : "Rohan",
+        "Dept" : "Mech",
+        "Yr" : 3,
+        "Status" : "P"
+}
+{
+        "_id" : ObjectId("55d4c762dd4a8d7ad64fb813"),
+        "Rn" : 1303,
+        "Sname" : "Saket",
+        "Dept" : "Civil",
+        "Yr" : 4,
+        "Status" : "F"
+}
+{
+        "_id" : ObjectId("55d4c776dd4a8d7ad64fb814"),
+        "Rn" : 1306,
+        "Sname" : "Priyanka",
+        "Dept" : "Chem",
+        "Yr" : 1,
+        "Status" : "F"
+}
+{
+        "_id" : ObjectId("55d4c7a6dd4a8d7ad64fb816"),
+        "Rn" : 1307,
+        "Sname" : "Akshay",
+        "Dept" : "ENTC",
+        "Yr" : 2,
+        "Status" : "P"
+}
+{
+        "_id" : ObjectId("55d4c7c9dd4a8d7ad64fb817"),
+        "Rn" : 1310,
+        "Sname" : "Vipin",
+        "Dept" : "Mechs",
+        "Yr" : 3,
+        "Status" : "F"
+}
+{
+        "_id" : ObjectId("55d4c7dcdd4a8d7ad64fb818"),
+        "Rn" : 1309,
+        "Sname" : "Swapnil",
+        "Dept" : "Comp",
+        "Yr" : 4,
+        "Status" : "F"
+}
+{
+        "_id" : ObjectId("55d4c7f6dd4a8d7ad64fb819"),
+        "Rn" : 1313,
+        "Sname" : "Akash",
+        "Dept" : "poly",
+        "Yr" : 1,
+        "Status" : "P",
+        "Year" : 2
+}
+{
+        "_id" : ObjectId("55d4c9acdd4a8d7ad64fb81a"),
+        "Rn" : 1302,
+        "Sname" : "Priya",
+        "Dept" : "Elec",
+        "Yr" : 1,
+        "Status" : "P"
+}
+>
